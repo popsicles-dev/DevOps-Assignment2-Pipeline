@@ -172,16 +172,6 @@ wemech/
 └── README.md
 ```
 
-## 👥 Team
-
-**Fundamentals of Software Engineering Project**
-
-| Name | Role | Student ID |
-|------|------|------------|
-| Abdullah Bin Umar | Developer, Requirement Engineer |
-| Safwan Hafeez | Lead, Developer, Architect |
-| Ahmed Mujtaba | Developer, Tester |
-
 ## 📋 Development Roadmap
 
 ### Iteration 1: Core Functionality
