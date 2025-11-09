@@ -1,0 +1,431 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title> WeMech | Your Comprehensive Automotive Solution </title>
+	<meta name="description" content="">
+	<meta name="author" content="Scalar">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{{ url_for('static', filename='source/bootstrap-3.3.6-dist/css/bootstrap.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='source/font-awesome-4.5.0/css/font-awesome.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='mystyle.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='slider.css') }}">
+</head>
+<body>
+<!-- Header -->
+<div class="allcontain">
+	<div class="header">
+			<ul class="socialicon">
+				<li><a href="https://www.youtube.com/watch?v=xvFZjo5PgG0"><i class="fa fa-facebook"></i></a></li>
+				<li><a href="https://www.youtube.com/watch?v=xvFZjo5PgG0"><i class="fa fa-twitter"></i></a></li>
+				<li><a href="https://www.youtube.com/watch?v=xvFZjo5PgG0"><i class="fa fa-google-plus"></i></a></li>
+				<li><a href="https://www.youtube.com/watch?v=xvFZjo5PgG0"><i class="fa fa-pinterest"></i></a></li>
+			</ul>
+			<ul class="givusacall">
+				<li>WeMech | Your Comprehensive Automotive Solution</li>
+			</ul>
+			<ul class="logreg">
+				<li><a href="/login">Login </a> </li>
+				<li><a href="/signup"><span class="register">Register</span></a></li>
+			</ul>
+	</div>
+	<!-- Navbar Up -->
+	<nav class="topnavbar navbar-default topnav">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed toggle-costume" data-toggle="collapse" data-target="#upmenu" aria-expanded="false">
+					<span class="sr-only"> Toggle navigaion</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>	
+				<a class="navbar-brand logo" href="#" style="border-radius: 50%;"><img src="../static/image/logo1.jpg" alt="logo"></a>
+			</div>	 
+		</div>
+		<div class="collapse navbar-collapse" id="upmenu">
+			<ul class="nav navbar-nav" id="navbarontop">
+				<li class="active"><a href="/home">HOME</a> </li>
+				<li>
+					<a href="/login">AUTOAID</a>
+				</li>
+				<li>
+					<a href="/login">CAR SCORE</a>
+				</li>
+				<li>
+					<a href="/login">PARTS & SERVICES</a>
+				</li>
+				<li>
+					<a href="/login">PLATE SCANNER</a>
+				</li>
+				<li>
+					<a href="/login">GLOBAL COMMUNITY</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+</div>
+<!--_______________________________________ Carousel__________________________________ -->
+<div class="allcontain">
+	<div id="carousel-up" class="carousel slide" data-ride="carousel">
+		<div class="carousel-inner " role="listbox">
+			<div class="item active">
+				<img src="../static/image/benz.jpg" alt="oldcar">
+				<div class="carousel-caption">
+					<h2>Mercedes-AMG C63</h2>
+					<p>4.0-liter V8 biturbo engine, Top-speed 260 Kmh<br>
+					paired with a 9-speed AMG Transmission</p>
+				</div>
+			</div>
+		</div>
+		<nav class="navbar navbar-default midle-nav">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed textcostume" data-toggle="collapse" data-target="#navbarmidle" aria-expanded="false">
+						<h1>SEARCH TEXT</h1>
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="collapse navbar-collapse" id="navbarmidle">
+				<div class="searchtxt">
+					<h1>Navigate Catalogue</h1>
+				</div>
+				<form class="navbar-form navbar-left searchformmargin" role="search" method="POST" action="{{ url_for('search') }}">
+					<div class="form-group">
+						<input type="text" class="form-control searchform" name="keyword" placeholder="Enter Keyword" style="width: 550px;">
+						<input type="text" class="form-control searchform" name="price" placeholder="Enter Price" style="width: 550px;">
+					</div>
+					<button type="submit" class="searchbutton"><span class="glyphicon glyphicon-search"></span></button>
+				</form>
+			</div>
+		</nav>
+	</div>
+</div>
+<!-- ____________________Featured Section ______________________________--> 
+<div class="allcontain">
+	<div class="feturedsection">
+		<h1 class="text-center"><span class="bdots">&bullet;</span>U R B A N<span class="carstxt">E S C A P E</span>&bullet;</h1>
+	</div>
+	<div class="feturedimage">
+		<div class="row firstrow">
+			<div class="col-lg-6 costumcol colborder1">
+				<div class="row costumrow">
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 img1colon">
+						<img src="../static/image/romeo1.jpg" alt="porsche">
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 txt1colon ">
+						<div class="featurecontant">
+							<h1>Porsche Cayenne Turbo</h1>
+							<p>Rear-engine, rear-wheel-drive, two-door sports car <br>
+								with various engine options ranging from 1.1L to 2.0L <br> and manual transmissions.</p>
+			 				<h2></h2>
+			 				<button id="btnRM" onclick="rmtxt()">READ MORE</button>
+			 				<div id="readmore">
+								<h1>Porsche 356</h1>
+								<p>The Porsche 356, produced from 1948 to 1965, rear-wheel-drive layout. It was offered with various air-cooled flat-four engines, ranging from 1.1 to 2.0 liters, paired with 4-speed manual transmissions (later models had 5-speed options). Available in coupe, convertible, and Speedster body styles, the 356 was known for its lightweight construction, timeless design, and agile handling, making it a classic among sports car enthusiasts.										<br>
+								</p>
+								<button id="btnRL">READ LESS</button>
+			 				</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6 costumcol colborder2">
+				<div class="row costumrow">
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 img2colon">
+						<img src="../static/image/porsche3.jpg" alt="porsche1">
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 txt1colon ">
+						<div class="featurecontant">
+							<h1>Alfa Romeo Stelvio</h1>
+							<p> Rear-wheel-drive convertible sports car powered by a <br> 1.8-liter inline-four engine and featuring a 5-speed manual transmission</p>
+			 				<h2></h2>
+			 				<button id="btnRM2">READ MORE</button>
+			 				<div id="readmore2">
+			 						<h1>Alfa Romeo 1963</h1>
+			 						<p>The Alfa Romeo Spider 1750, produced from 1966 to 1969, featured a 1.8-liter inline-four engine producing around 118 horsepower, paired with a 5-speed manual transmission. It was a rear-wheel-drive convertible sports car with a classic Pininfarina-designed body, offering a blend of performance and style.<br></p>
+			 						<button id="btnRL2">READ LESS</button>
+			 				</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- ________________________LATEST CARS SECTION _______________________-->
+<div class="latestcars">
+	<h1 class="text-center">&bullet; CATALOGUE &bullet;</h1>
+</div>
+<br>
+<br>
+<!-- ________________________Latest Cars Image Thumbnail________________-->
+	<div class="grid">
+		<div class="row">
+			<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+				<div class="txthover">
+					<img src="../static/image/car1.jpg" alt="car1">
+						<div class="txtcontent">
+							<div class="stars">
+								<div class="glyphicon glyphicon-star"></div>
+								<div class="glyphicon glyphicon-star"></div>
+								<div class="glyphicon glyphicon-star"></div>
+							</div>
+							<div class="simpletxt">
+								<h3 class="name">Toyota Mark X</h3>
+								<p>"The Toyota Mark X typically features a range of engines, including a 2.5L V6 or 3.5L V6, with rear-wheel drive and optional all-wheel drive. It's often equipped with automatic transmission and offers both petrol and hybrid electric variants." </p>
+								<h4 class="price">  PKR 3,200,000</h4>
+								<button>READ MORE</button><br>
+								<div class="wishtxt">
+									<p class="paragraph1"> Add to Wishlist <span class="glyphicon glyphicon-heart"></span> </p>
+									<p class="paragraph2">Compare <span class="icon"><img src="../static/image/compicon.png" alt="compicon"></span></p>
+								</div>
+							</div>
+							<div class="stars2">
+								<div class="glyphicon glyphicon-star"></div>
+								<div class="glyphicon glyphicon-star"></div>
+								<div class="glyphicon glyphicon-star"></div>
+							</div>
+						</div>
+				</div>	 
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 ">
+				<div class="txthover">
+					<img src="../static/image/car2.jpg" alt="car2">
+						<div class="txtcontent">
+							<div class="stars">
+								<div class="glyphicon glyphicon-star"></div>
+								<div class="glyphicon glyphicon-star"></div>
+								<div class="glyphicon glyphicon-star"></div>
+							</div>
+							<div class="simpletxt">
+								<h3 class="name">Audi R8 GT</h3>
+								<p>"
+									The Audi R8 GT features a powerful V10 engine, high-performance tires, and a lightning-fast transmission. It's a blend of luxury and speed, with an optional electric motor for a greener drive." </p>
+								<h4 class="price">PKR 71,228,800 Rs.</h4>
+								<button>READ MORE</button><br>
+								<div class="wishtxt">
+									<p class="paragraph1"> Add to Wishlist <span class="glyphicon glyphicon-heart"></span> </p>
+									<p class="paragraph2">Compare <span class="icon"><img src="../static/image/compicon.png" alt="compicon"></span></p>
+								</div>
+							</div>
+							<div class="stars2">
+								<div class="glyphicon glyphicon-star"></div>
+								<div class="glyphicon glyphicon-star"></div>
+								<div class="glyphicon glyphicon-star"></div>
+							</div>
+						</div>
+				</div>	 
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+				<div class="txthover">
+					<img src="../static/image/car3.jpg" alt="car3">
+						<div class="txtcontent">
+							<div class="stars">
+								<div class="glyphicon glyphicon-star"></div>
+								<div class="glyphicon glyphicon-star"></div>
+								<div class="glyphicon glyphicon-star"></div>
+							</div>
+							<div class="simpletxt">
+								<h3 class="name">Suzuki Swift</h3>
+								<p>"
+									The Suzuki Swift features a range of engines from 1.0 to 1.4 liters, with petrol and hybrid options, paired with manual or automatic transmissions. It typically comes with standard tyres suitable for urban and suburban driving." </p>
+								<h4 class="price"> PKR 4,421,000 Rs.</h4>
+								<button>READ MORE</button><br>
+								<div class="wishtxt">
+									<p class="paragraph1"> Add to Wishlist <span class="glyphicon glyphicon-heart"></span> </p>
+									<p class="paragraph2">Compare <span class="icon"><img src="../static/image/compicon.png" alt="compicon"></span></p>
+								</div>
+							</div>
+							<div class="stars2">
+								<div class="glyphicon glyphicon-star"></div>
+								<div class="glyphicon glyphicon-star"></div>
+								<div class="glyphicon glyphicon-star"></div>
+							</div>
+						</div>
+				</div>	 
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+				<div class="txthover">
+					<img src="../static/image/car4.jpg" alt="car4">
+						<div class="txtcontent">
+							<div class="stars">
+								<div class="glyphicon glyphicon-star"></div>
+								<div class="glyphicon glyphicon-star"></div>
+								<div class="glyphicon glyphicon-star"></div>
+							</div>
+							<div class="simpletxt">
+								<h3 class="name">Honda Civic RS</h3>
+								<p>"
+									The Honda Civic RS features a 1.5-liter turbocharged engine, sporty performance, and advanced safety features, paired with a CVT transmission. It offers a stylish design and comfortable interior, making it a popular choice in the compact sedan segment." </p>
+								<h4 class="price">PKR 9,899,000 Rs. </h4>
+								<button>READ MORE</button><br>
+								<div class="wishtxt">
+									<p class="paragraph1"> Add to Wishlist <span class="glyphicon glyphicon-heart"></span> </p>
+									<p class="paragraph2">Compare <span class="icon"><img src="../static/image/compicon.png" alt="compicon"></span></p>
+								</div>
+							</div>
+							<div class="stars2">
+								<div class="glyphicon glyphicon-star"></div>
+								<div class="glyphicon glyphicon-star"></div>
+								<div class="glyphicon glyphicon-star"></div>
+							</div>
+						</div>
+				</div>	 
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+				<div class="txthover">
+					<img src="../static/image/car5.jpg" alt="car5">
+						<div class="txtcontent">
+							<div class="stars">
+								<div class="glyphicon glyphicon-star"></div>
+								<div class="glyphicon glyphicon-star"></div>
+								<div class="glyphicon glyphicon-star"></div>
+							</div>
+							<div class="simpletxt">
+								<h3 class="name">Lexus IS</h3>
+								<p>"
+									The Lexus IS typically comes with a range of engine options, including a 2.0-liter turbocharged four-cylinder or a 3.5-liter V6, paired with either a 6-speed automatic or an 8-speed automatic transmission. It features standard rear-wheel drive or optional all-wheel drive, and while it's not fully electric, Lexus does offer hybrid versions in some markets."<br>
+								</p>
+								<h4 class="price">PKR 6,500,000 Rs.</h4>
+								<button>READ MORE</button><br>
+								<div class="wishtxt">
+									<p class="paragraph1"> Add to Wishlist <span class="glyphicon glyphicon-heart"></span> </p>
+									<p class="paragraph2">Compare <span class="icon"><img src="../static/image/compicon.png" alt="compicon"></span></p>
+								</div>
+							</div>
+							<div class="stars2">
+								<div class="glyphicon glyphicon-star"></div>
+								<div class="glyphicon glyphicon-star"></div>
+								<div class="glyphicon glyphicon-star"></div>
+							</div>
+						</div>
+				</div>	 
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+				<div class="txthover">
+					<img src="../static/image/car6.jpg" alt="car6">
+						<div class="txtcontent">
+							<div class="stars">
+								<div class="glyphicon glyphicon-star"></div>
+								<div class="glyphicon glyphicon-star"></div>
+								<div class="glyphicon glyphicon-star"></div>
+							</div>
+							<div class="simpletxt">
+								<h3 class="name">Mazda RX7</h3>
+								<p>"
+									The Mazda RX-7 features a rotary engine, rear-wheel drive, and a compact, sporty design. It's known for its agile handling and iconic pop-up headlights, making it a classic choice for enthusiasts."<br>
+								</p>
+								<h4 class="price"> PKR 2,052,000 Rs.</h4>
+								<button>READ MORE</button><br>
+								<div class="wishtxt">
+									<p class="paragraph1"> Add to Wishlist <span class="glyphicon glyphicon-heart"></span> </p>
+									<p class="paragraph2">Compare <span class="icon"><img src="../static/image/compicon.png" alt="compicon"></span></p>
+								</div>
+							</div>
+							<div class="stars2">
+								<div class="glyphicon glyphicon-star"></div>
+								<div class="glyphicon glyphicon-star"></div>
+								<div class="glyphicon glyphicon-star"></div>
+							</div>
+						</div>
+				</div>	 
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+				<div class="txthover">
+					<img src="../static/image/car7.jpg" alt="car7">
+						<div class="txtcontent">
+							<div class="stars">
+								<div class="glyphicon glyphicon-star"></div>
+								<div class="glyphicon glyphicon-star"></div>
+								<div class="glyphicon glyphicon-star"></div>
+							</div>
+							<div class="simpletxt">
+								<h3 class="name">BMW M3 GTR</h3>
+								<p>"The BMW M3 GTR features a high-performance engine with a displacement of around 4.0 liters, high-performance tires for superior grip, and a manual transmission. It's a non-electric sports car known for its powerful performance and racing pedigree."<br>
+								</p>
+								<h4 class="price"> PKR 2,150,000 Rs.</h4>
+								<button>READ MORE</button><br>
+								<div class="wishtxt">
+									<p class="paragraph1"> Add to Wishlist <span class="glyphicon glyphicon-heart"></span> </p>
+									<p class="paragraph2">Compare <span class="icon"><img src="../static/image/compicon.png" alt="compicon"></span></p>
+								</div>
+							</div>
+							<div class="stars2">
+								<div class="glyphicon glyphicon-star"></div>
+								<div class="glyphicon glyphicon-star"></div>
+								<div class="glyphicon glyphicon-star"></div>
+							</div>
+						</div>
+				</div>	 
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+				<div class="txthover">
+					<img src="../static/image/car8.jpg" alt="car8">
+						<div class="txtcontent">
+							<div class="stars">
+								<div class="glyphicon glyphicon-star"></div>
+								<div class="glyphicon glyphicon-star"></div>
+								<div class="glyphicon glyphicon-star"></div>
+							</div>
+							<div class="simpletxt">
+								<h3 class="name">Mercedes AMG C63</h3>
+								<p>"
+									The Mercedes-Benz C63 features a powerful 4.0-liter twin-turbo V8 engine, performance-oriented tires, and a sophisticated transmission, offering a thrilling driving experience. It is not electric and is known for its impressive performance and luxurious design."<br>
+								</p>
+								<h4 class="price">PKR 1,100,000 Rs.</h4>
+								<button>READ MORE</button><br>
+								<div class="wishtxt">
+									<p class="paragraph1"> Add to Wishlist <span class="glyphicon glyphicon-heart"></span> </p>
+									<p class="paragraph2">Compare <span class="icon"><img src="../static/image/compicon.png" alt="compicon"></span></p>
+								</div>
+							</div>
+							<div class="stars2">
+								<div class="glyphicon glyphicon-star"></div>
+								<div class="glyphicon glyphicon-star"></div>
+								<div class="glyphicon glyphicon-star"></div>
+							</div>
+						</div>
+				</div>	 
+			</div>	
+		</div>
+	</div>
+	<!-- ______________________________________________________Bottom Menu ______________________________-->
+	<div class="bottommenu">
+		<div class="bottomlogo">
+		<span class="dotlogo">&bullet;</span><img src="../static/image/logo1.jpg" alt="logo1"><span class="dotlogo">&bullet;</span>
+		</div>
+		<ul class="nav nav-tabs bottomlinks">
+			<li role="presentation" ><a href="#/" role="button">ABOUT US</a></li>
+			<li role="presentation"><a href="#/">CATEGORIES</a></li>
+			<li role="presentation"><a href="#/">PREORDERS</a></li>
+			<li role="presentation"><a href="#/">CONTACT US</a></li>
+			<li role="presentation"><a href="#/">RECEIVE REGULAR UPDATES</a></li>
+		</ul>
+		<p>Drive into a smarter, hassle-free future with our online automobile store. <br> Explore our range of vehicles, find solutions to your retail challenges, <br> and experience automotive shopping like never before. <br> Start your journey with us today!</p>
+		 <img src="../static/image/line.png" alt="line"> <br>
+		 <div class="bottomsocial">
+		 	<a href="#"><i class="fa fa-facebook"></i></a>
+			<a href="#"><i class="fa fa-twitter"></i></a>
+			<a href="#"><i class="fa fa-google-plus"></i></a>
+			<a href="#"><i class="fa fa-pinterest"></i></a>
+		</div>
+			<div class="footer">
+				<div class="copyright">
+				  &copy; Copy right 2024 Scalar Incorporation | <a href="#">Privacy </a>| <a href="#">Policy</a>
+				</div>
+				<div class="atisda">
+					 Designed by <a href="#">Scalar Inc.</a> 
+				</div>
+			</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="{{ url_for('static', filename='source/js/jquery.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='source/js/isotope.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='source/js/myscript.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='source/bootstrap-3.3.6-dist/js/bootstrap.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='source/bootstrap-3.3.6-dist/js/jquery.1.11.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+version: '3.8'
+# This file defines the web application and the MySQL database with persistence.
+
+services:
+  # --- 1. Web Application Service (Flask/Gunicorn) ---
+  web:
+    # Use your Docker Hub image
+    image: popsicles/flask-mysql-app:v1.0
+    container_name: flask_web_container_part1
+    
+    # Map the container port 8000 (where Gunicorn runs) to host port 80
+    ports:
+      - "80:8000"
+    
+    # REQUIRED: Environment variables matching your app.py requirements
+    environment:
+      # These variable names MUST match os.environ["..."] calls in your code
+      DB_HOST: db  # The name of the database service
+      DB_USER: app_user_part1
+      DB_PASS: securepassword123
+      DB_NAME: web_app_db_part1
+      DB_PORT: 3306 
+      
+    # Ensure the web app waits for the database to be ready
+    depends_on:
+      - db
+
+  # --- 2. Database Service (MySQL 8.0) ---
+  db:
+    image: mysql:8.0
+    container_name: mysql_db_container_part1
+    
+    # REQUIRED for persistence: Attach a named volume to the data directory
+    volumes:
+      - db_data:/var/lib/mysql
+    
+    # REQUIRED: Environment variables to configure the MySQL server
+    environment:
+      # Standard MySQL image variables:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: web_app_db_part1
+      MYSQL_USER: app_user_part1
+      
+      # NOTE: For standard MySQL image, setting MYSQL_PASSWORD automatically sets
+      # the password for the user defined by MYSQL_USER.
+      MYSQL_PASSWORD: securepassword123
+    
+    restart: always
+
+# --- 3. Volume Definition ---
+volumes:
+  db_data:
+    driver: local

@@ -1,0 +1,173 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title> WeMech | Your Comprehensive Automotive Solution </title>
+	<meta name="description" content="">
+	<meta name="author" content="Scalar">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{{ url_for('static', filename='source/bootstrap-3.3.6-dist/css/bootstrap.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='source/font-awesome-4.5.0/css/font-awesome.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='mystyle.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='slider.css') }}">
+</head>
+<body>
+<!-- Header -->
+<div class="allcontain">
+	<div class="header">
+			<ul class="socialicon">
+				<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+				<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+				<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+				<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+			</ul>
+			<ul class="givusacall">
+				<li>WeMech | Your Comprehensive Automotive Solution</li>
+			</ul>
+			<ul class="logreg">
+				<li><a href="/">Log Out</a> </li>
+				<li><img src="../static/image/user2.png" alt="" style="width: 20px; height: 20px;"></li>
+				<li><a href="#"></a> </li>
+			</ul>
+	</div>
+	<!-- Navbar Up -->
+	<nav class="topnavbar navbar-default topnav">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed toggle-costume" data-toggle="collapse" data-target="#upmenu" aria-expanded="false">
+					<span class="sr-only"> Toggle navigaion</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>	
+				<a class="navbar-brand logo" href="#" style="border-radius: 50%;"><img src="../static/image/logo1.jpg" alt="logo"></a>
+			</div>	 
+		</div>
+		<div class="collapse navbar-collapse" id="upmenu">
+			<ul class="nav navbar-nav" id="navbarontop">
+				<li class="active"><a href="/home">HOME</a> </li>
+				<li>
+					<a href="/autoaid">AUTOAID</a>
+				</li>
+				<li>
+					<a href="/carscore">CAR SCORE</a>
+				</li>
+				<li>
+					<a href="/services">PARTS & SERVICES</a>
+				</li>
+				<li>
+					<a href="/plateocr">PLATE SCANNER</a>
+				</li>
+				<li>
+					<a href="/community">GLOBAL COMMUNITY</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+</div>
+<!-- Filtered Cars -->
+<div class="filtered-cars">
+    {% if filtered_cars %}
+        <h2 style="font-family:'OpenSans Regular'">Here are your Searched Cars:</h2>
+        <div class="car-list">
+            {% for car in filtered_cars %}
+			<div class="car-item">
+				<h3>{{ car['Car Make'] }} - {{ car['Car Model'] }}</h3>
+				<p>Year: {{ car['Year'] }}</p>
+				<p>Engine Size: {{ car['Engine Size (L)'] }} L</p>
+				<p>Horsepower: {{ car['Horsepower'] }}</p>
+				<p>Torque: {{ car['Torque (lb-ft)'] }} lb-ft</p>
+				<p>0-60 MPH Time: {{ car['0-60 MPH Time (seconds)'] }} seconds</p>
+				<p>Price: {{ car['Price (in USD)'] }} USD</p>
+			</div>
+		{% endfor %}
+        </div>
+	{% elif suggestions %}
+		<h2 style="font-family:'OpenSans Regular'">Following are the solutions:</h2>
+		<table class="suggestion-table">
+			<thead>
+				<tr>
+					<th>Problem</th>
+					<th>Possible Solution</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for suggestion in suggestions %}
+					<tr>
+						<td style="padding-bottom: 4px;">{{ suggestion['Problem'] }}</td>
+						<td style="padding-bottom: 4px;">{{ suggestion['Possible Solution'] }}</td>
+					</tr>
+					{% if not loop.last %}
+						<tr><td colspan="2" style="height: 10px;"></td></tr>  {# Add empty row for spacing #}
+					{% endif %}
+				{% endfor %}
+			</tbody>
+		</table>
+	{% elif car_score %}
+        <h2 style="font-family:'OpenSans Regular'">Car Score for your Vehicle</h2>
+        <p>The calculated car score for your car is: {{ car_score }} %</p>
+		<h2></h2>
+        <p>Quality degraded over the years: {{ 100 - car_score }} %</p>
+	{% elif products %}
+		<h2>Products</h2>
+		<div class="product-list">
+			{% for product in products %}
+				<div class="product-item">
+					<h3>{{ product['Car Part'] }}</h3>
+					<p>Category: {{ product['Category'] }}</p>
+					<p>Retailers: <a href="{{ product['Retailers'] }}">View Link</a></p>
+				</div>
+			{% endfor %}
+		</div>
+	{% elif logs %}
+		<h2 style="font-family:'OpenSans Regular'">Maintenance Logs</h2>
+		<div class="log-list">
+			{% for log in logs %}
+				<div class="log-item">
+					<h3>Log ID: {{ log['log_id'] }}</h3>
+					<p>Date of Service: {{ log['date_of_service'] }}</p>
+					<p>Type of Service: {{ log['type_of_service'] }}</p>
+					<p>Service Provider: {{ log['service_provider'] }}</p>
+				</div>
+			{% endfor %}
+		</div>
+    {% else %}
+        <p>No data available.</p>
+    {% endif %}
+</div>
+<!-- ______________________________________________________Bottom Menu ______________________________-->
+<div class="bottommenu">
+	<div class="bottomlogo">
+	<span class="dotlogo">&bullet;</span><img src="../static/image/logo1.jpg" alt="logo1"><span class="dotlogo">&bullet;</span>
+	</div>
+	<ul class="nav nav-tabs bottomlinks">
+		<li role="presentation"><a href="#/" role="button">ABOUT US</a></li>
+		<li role="presentation"><a href="#/">CATEGORIES</a></li>
+		<li role="presentation"><a href="#/">PREORDERS</a></li>
+		<li role="presentation"><a href="#/">CONTACT US</a></li>
+		<li role="presentation"><a href="#/">RECEIVE OUR NEWSLETTER</a></li>
+	</ul>
+	<p>Drive into a smarter, hassle-free future with our online automobile store. <br> Explore our range of vehicles, find solutions to your retail challenges, <br> and experience automotive shopping like never before. <br> Start your journey with us today!</p>
+	<img src="../static/image/line.png" alt="line"> <br>
+	<div class="bottomsocial">
+		<a href="#"><i class="fa fa-facebook"></i></a>
+		<a href="#"><i class="fa fa-twitter"></i></a>
+		<a href="#"><i class="fa fa-google-plus"></i></a>
+		<a href="#"><i class="fa fa-pinterest"></i></a>
+	</div>
+	<div class="footer">
+		<div class="copyright">
+			&copy; Copy right 2024 Scalar Incorporation | <a href="#">Privacy </a>| <a href="#">Policy</a>
+		</div>
+		<div class="atisda">
+			Designed by <a href="#">Scalar Inc.</a> 
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="{{ url_for('static', filename='source/js/jquery.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='source/js/isotope.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='source/js/myscript.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='source/bootstrap-3.3.6-dist/js/bootstrap.js') }}"></script>
+</body>
+</html>

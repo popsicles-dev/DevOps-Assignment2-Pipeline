@@ -1,0 +1,100 @@
+Problem,Symptom,Possible Solution,Category
+Dead Battery,"Engine won't crank, electrical components fail","Jump start (if good battery), replace battery, check charging system",Engine
+Engine Won't Start,Engine doesn't crank or sputters,"Check battery, clean/replace spark plugs, consult mechanic",Engine
+Engine Overheating,"Temperature gauge rises rapidly, steam from engine bay","Pull over, turn off engine, check coolant level (if safe), call for tow truck",Engine
+Car Won't Idle,Engine stalls when coming to a stop,"Check idle air control valve, clean throttle body, consult mechanic",Engine
+Engine Knocking,Knocking sound from engine,"Potential causes: loose spark plugs, detonation (low-quality fuel), worn bearings (mechanic repair)",Engine
+Loss of Power,"Engine feels sluggish, lacks acceleration","Check air filter, clean or replace fuel filter, consult mechanic for further diagnosis",Engine
+Rough Idling,Engine vibrates excessively at idle,"Check spark plugs, clean throttle body, consult mechanic",Engine
+Engine Backfiring,Popping sound from exhaust on deceleration,"Potential causes: faulty ignition system, lean fuel mixture (consult mechanic)",Engine
+Oil Leak,Visible oil puddle under car,"Identify source, top up oil (temporary fix), consult mechanic to address leak",Engine
+Burning Oil,"Excessive oil consumption, blue smoke from exhaust","Top up oil regularly (temporary fix), repair or replace worn piston rings or valve seals (mechanic required)",Engine
+Check Engine Light,Illuminated dashboard light,"Consult mechanic for diagnosis, various potential causes",Engine
+Stalling,"Engine cuts out while driving, restarts with difficulty","Check fuel system for clogs or faulty components, clean or replace spark plugs, consult mechanic",Engine
+White Smoke from Exhaust,Indicates coolant burning,"Potential causes: blown head gasket, cracked cylinder head (mechanic repair)",Engine
+Black Smoke from Exhaust,Indicates rich fuel mixture,"Consult mechanic for diagnosis, potential causes include faulty sensors or fuel pressure regulator",Engine
+Engine Overheating (Secondary Causes),"Faulty thermostat, clogged radiator, malfunctioning water pump (mechanic repair)",Engine,
+Timing Belt Issues,"Engine performance problems, ticking noise",Replace timing belt according to manufacturer's schedule (mechanic recommended),Engine
+Vacuum Leak,"Engine runs rough, high idle","Check for cracked hoses or loose connections, consult mechanic",Engine
+Crankcase Pressure Buildup,"Engine oil leaks, dipstick pops out",Worn piston rings or valve seals (mechanic repair),Engine
+Engine Seizing,Engine locks up and won't turn,Major internal engine failure (mechanic required),Engine
+Faulty Oxygen Sensor,"Reduced fuel efficiency, check engine light on",Replace oxygen sensor (consult mechanic or DIY with proper knowledge),Engine
+Catalytic Converter Issues,"Reduced fuel efficiency, strong rotten egg smell from exhaust",Replace catalytic converter (mechanic recommended),Engine
+Faulty Mass Airflow (MAF) Sensor,"Engine hesitation, check engine light on",Clean or replace MAF sensor (consult mechanic or DIY with proper knowledge),Engine
+Coolant System Issues,"Leaks, low coolant level","Identify leak source, top up coolant (if safe), consult mechanic to address leak",Engine
+Fuel System Clogged,"Engine hesitation, difficulty starting","Replace clogged fuel filter, consult mechanic for fuel injector cleaning or pump replacement",Engine
+Fuel Pump Failure,"Engine won't start, sputters on acceleration",Replace fuel pump (mechanic recommended),Engine
+Dead Battery,"Engine won't crank, electrical components don't work","Jump start (if good battery), replace battery, check charging system",Electrical
+Dim Lights,All lights appear dim,"Check voltage regulator, alternator, consult mechanic for electrical system diagnosis",Electrical
+Flickering Electrical Components,"Lights, gauges flicker","Potential causes: loose connections, faulty voltage regulator (mechanic repair)",Electrical
+Electrical Burning Smell,Indicates electrical short circuit,"Pull over immediately, turn off engine, consult mechanic to identify and fix source",Electrical
+Radio or Infotainment System Malfunction,"No power, distorted sound, unresponsive screen","Check fuse box, consult mechanic for system repair",Electrical
+Dead Battery Even After Jump Start,"Faulty alternator, loose or corroded battery terminals, internal battery damage (mechanic recommended)",Electrical,
+Faulty Window Regulators,"Windows not moving smoothly, unusual noises",Replace window regulator (mechanic recommended for complex issues),Electrical
+Suspension Issues,"Clunking noises, uneven tire wear, car feels bouncy","Replace worn shocks or struts, consult mechanic for alignment check",Suspension
+Clunking from Drivetrain,"Noises when shifting gears, especially during acceleration","Potential causes: worn CV joints, faulty U-joints (mechanic repair)",Drivetrain
+Clutch Problems,"Difficulty shifting gears, slipping clutch pedal",Adjust or replace clutch (mechanic recommended),Drivetrain
+Manual Transmission Grinding,Grinding noise when shifting gears (especially cold engine),Synchronizer issues in transmission (mechanic repair),Drivetrain
+Automatic Transmission Slipping,"Gears don't engage properly, car hesitates to accelerate","Low transmission fluid, potential internal transmission damage (mechanic diagnosis)",Drivetrain
+Burning Smell in Cabin,"Musty odor, overheating electrical components","Potential causes: malfunctioning heater core, clutch burning (consult mechanic)",Climate Control
+Heater Not Working,"Blowing cold air, low heat output","Check coolant level, troubleshoot heater core or blower motor (mechanic may be needed)",Climate Control
+Air Conditioner Blowing Cold Air Erratically,Airflow fluctuates between cold and warm,"Low refrigerant level, malfunctioning compressor (mechanic repair)",Climate Control
+Defrost Not Working,Windshield fogs up and won't clear,"Clogged defrost vents, faulty blend door (mechanic repair)",Climate Control
+Faulty Door Locks,Doors won't lock or unlock manually or with key fob,"Replace dead batteries in key fob, check for electrical issues (mechanic may be needed)",Body
+Stuck Window,Window won't roll up or down,Faulty window regulator or motor (mechanic recommended),Body
+Exterior Light Issues,"Headlights, taillights, or turn signals not working","Check bulbs, replace fuses, consult mechanic for electrical diagnosis",Body
+Windshield Wiper Problems,Wiper blades chatter or streak,"Replace worn wiper blades, check wiper arm functionality",Body
+Tire Pressure Monitoring System (TPMS) Light On,Dashboard light indicates low tire pressure,"Inflate tires to proper pressure, check for sensor malfunction (mechanic may be needed)",Tires
+Uneven Brake Pad Wear,One brake pad significantly more worn than others,Caliper sticking or malfunctioning (mechanic repair),Brakes
+Brake Fluid Leak,"Soft or spongy brake pedal, visible puddle under car","Identify leak source, replace brake fluid (mechanic recommended due to safety concerns)",Brakes
+Parking Brake Issues,Parking brake won't engage or release properly,Adjust or repair parking brake mechanism (mechanic recommended),Brakes
+Squeaking Brakes,High-pitched sound when braking,Worn brake pads or contaminated rotors (replace pads or resurface rotors),Brakes
+Rotten Egg Smell from Exhaust,Indicates catalytic converter malfunction,Replace catalytic converter (mechanic recommended),Exhaust
+Loud Exhaust Noise,Excessive noise from exhaust system,"Hole in exhaust pipe, loose connection, muffler damage (mechanic repair)",Exhaust
+Check Engine Light Flashing,Rapidly blinking check engine light,"Severe engine issue, potential damage (pull over safely, consult mechanic immediately)",Engine
+Car Won't Start Due to Security System,Engine cranks but doesn't turn over,"Faulty security system component, disarm using spare key or fob",Electrical
+Cruise Control Not Working,Cruise control buttons unresponsive,Faulty switch or sensor (mechanic diagnosis),Electrical
+Warning Lights on Dashboard,"Various warning lights illuminate (oil pressure, temperature, etc.)","Consult owner's manual for specific meaning, potential for multiple issues (mechanic diagnosis)",Various
+Faulty Horns,No sound or weak horn,"Replace horn fuse or relay,  check horn functionality (mechanic may be needed for electrical troubleshooting)",Electrical
+Sunroof Leaks,Water entering car interior through sunroof,"Clean clogged sunroof drains,  reseal sunroof if necessary (professional body shop recommended)",Body
+Scratches or Dents in Bodywork,Visible damage on car's exterior,"Minor scratches - buff and polish,  dents -  professional paintless dent repair or body shop repair",Body
+Faulty Interior Lights,"Dome light, map lights, or other interior lights malfunctioning","Replace bulbs or check fuse,  consult mechanic for electrical diagnosis",Electrical
+Trouble Shifting Out of Park,Car stuck in park even with brake pedal pressed,Faulty shift interlock mechanism (mechanic repair),Drivetrain
+Overheating Transmission,"Burning smell, sluggish gear changes","Check transmission fluid level and condition,  consult mechanic for diagnosis (potential internal damage)",Drivetrain
+Differential Whining Noise,"Whining sound from under the car, especially during turns","Low differential fluid,  worn bearings (mechanic repair)",Drivetrain
+Faulty Wheel Speed Sensor,Anti-lock braking system (ABS) or traction control light on,Replace faulty sensor (mechanic recommended),Electrical
+Faulty Fuel Gauge,Inaccurate fuel level reading,Faulty fuel level sensor (mechanic repair),Instruments
+Temperature Gauge Not Working,Inaccurate engine temperature reading,Faulty coolant temperature sensor (mechanic repair),Instruments
+Dashboard Odometer Not Working,Odometer display malfunctioning,Faulty odometer assembly (mechanic repair or replacement),Instruments
+Windshield Washer Fluid Sprays Weakly,Low pressure or clogged washer nozzles,"Refill washer fluid reservoir,  clean clogged nozzles",Body
+Car Shakes When Idling,Excessive vibration at idle speed,"Potential causes: engine mounts worn,  uneven tire wear,  consult mechanic for diagnosis",Various
+Car Shakes While Braking,Vibration felt in steering wheel during braking,"Warped brake rotors (resurface or replace),  unbalanced wheels (requires balancing)",Brakes
+Car Pulls to One Side While Driving,Car veers left or right even with a straight steering wheel,"Misaligned wheels (needs wheel alignment),  uneven tire pressure",Tires
+Rotten Egg Smell from Engine Bay,Indicates a vacuum leak,Check for cracked hoses or loose connections (consult mechanic),Engine
+Loss of Engine Coolant,Coolant level keeps dropping,"Identify leak source,  top up coolant (if safe),  consult mechanic to address leak",Engine
+Engine Performance Issues at High Altitude,"Loss of power, engine hesitates",Potential causes:  lean fuel mixture (car may need adjustments for high altitude),Engine
+Car Won't Start in Cold Weather,Engine cranks slowly or not at all,"Weak battery,  check engine oil viscosity (may need thinner oil for cold weather)",Engine
+Overheating Due to Towing,Engine temperature rises rapidly while towing a trailer,"Reduce towing weight,  check engine cooling system functionality (consult mechanic)",Engine
+Trailer Sway,Trailer fishtails or sways erratically while towing,"Improper weight distribution on trailer,  check trailer hitch and sway control system",Towing
+Faulty Cabin Air Filter,"Musty odors, reduced air ventilation",Replace cabin air filter (consult manual for replacement schedule),Climate Control
+Tire Bulge or Separation,Visible bulge or separation of tire layers,Do not drive on tire - replace immediately (safety hazard),Tires
+Spare Tire Issues,"Flat spare tire, difficulty accessing spare","Inflate spare tire,  consult manual for spare access procedure",Tires
+Faulty Thermostat,Engine overheating or underheating,Replace thermostat (mechanic recommended),Engine
+Clogged PCV Valve,"Rough idling, increased oil consumption",Replace PCV valve (consult mechanic or DIY with proper knowledge),Engine
+Faulty Emissions System Components,"Check engine light on, increased emissions",Consult mechanic for diagnosis and repair (may involve replacing sensors or catalytic converter),Engine
+Fuel Injector Issues,"Engine hesitation, rough idling",Clean or replace fuel injectors (mechanic recommended for cleaning or complex repairs),Engine
+Faulty Spark Plug Wires,"Engine misfires, reduced performance",Replace spark plug wires (consult manual for replacement intervals),Engine
+Clutch Slave Cylinder Failure,Difficulty depressing clutch pedal,Replace clutch slave cylinder (mechanic recommended),Drivetrain
+Driveshaft Problems,"Vibrations while driving, clunking noises",Consult mechanic for diagnosis (potential repairs include replacing u-joints or driveshaft),Drivetrain
+Faulty Door Handle,Difficulty opening car door from outside or inside,Replace door handle mechanism (mechanic recommended),Body
+Power Window Issues,Window movement slow or erratic,Check for electrical issues or faulty window regulator (mechanic may be needed),Electrical
+Remote Keyless Entry Not Working,Unable to unlock or lock doors with key fob,"Replace key fob battery,  check for fob malfunctions (mechanic may be needed for programming)",Electrical
+Headlight Aim Misaligned,Poor nighttime visibility,Adjust headlight aim (consult manual or mechanic),Lights
+Tailgate Won't Open,Difficulty opening or closing the tailgate,Check for electrical issues or malfunctioning latch mechanism (mechanic may be needed),Body
+Windshield Wiper Spray Nozzles Clogged,Wiper fluid not spraying properly,Clean clogged nozzles with a pin or compressed air,Body
+Low Washer Fluid Level Warning Light,Dashboard light indicates low washer fluid,Refill windshield washer fluid reservoir,Body
+Wheel Bearing Noise,"Growling or grinding noise from wheels, especially during turns",Replace worn wheel bearings (mechanic recommended),Drivetrain
+Faulty Oxygen Sensor Heater Circuit,"Check engine light on, reduced fuel efficiency",Replace faulty oxygen sensor (mechanic recommended),Engine
+Evaporative Emission System (EVAP) Leak,"Strong fuel odor, check engine light on",Consult mechanic for leak detection and repair (may involve replacing hoses or valves),Engine
+Fuel Pump Relay Failure,Engine cranks but doesn't start,Replace fuel pump relay (consult mechanic or DIY with proper knowledge),Electrical
+Faulty Coolant Temperature Sensor,Inaccurate engine temperature gauge reading,Replace coolant temperature sensor (mechanic recommended),Instruments
