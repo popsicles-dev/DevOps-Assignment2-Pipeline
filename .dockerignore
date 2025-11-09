@@ -1,0 +1,20 @@
+# .dockerignore
+
+# Python environment
+.venv
+__pycache__
+
+# OS/System files
+.vscode
+.git
+.gitignore
+
+# Large data files
+*.log
+*.db
+*.sqlite3
+
+# Large dependencies often included in Flask apps (e.g., Pandas/Numpy data caches)
+.ipynb_checkpoints
+data/
+dumps/
