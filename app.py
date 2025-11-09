@@ -7,7 +7,7 @@ from PIL import Image
 import mysql.connector
 import pathlib
 # import pytesseract as tess  # disabled on EB until Tesseract is installed
-
+# Pipeline test: Commit 1
 app = Flask(__name__)
 
 # ----- Paths (absolute) -----
