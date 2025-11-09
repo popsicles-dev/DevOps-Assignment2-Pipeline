@@ -1,53 +1,54 @@
 version: '3.8'
-# This file defines the web application and the MySQL database with persistence.
+# This file is optimized for the Jenkins CI/CD pipeline.
+# It uses a 'build' context and a volume mount for the code.
 
 services:
   # --- 1. Web Application Service (Flask/Gunicorn) ---
-  web:
-    # Use your Docker Hub image
-    image: popsicles/flask-mysql-app:v1.0
-    container_name: flask_web_container_part1
+  web_build: # Changed container name
+    # MANDATORY: Instructs Docker Compose to build the image using the Dockerfile 
+    # found in the current directory (the checked-out code)
+    build: .
+    container_name: flask_web_container_part2
     
-    # Map the container port 8000 (where Gunicorn runs) to host port 80
+    # REQUIRED: Map the container port (8000) to a NEW host port (8081)
     ports:
-      - "80:8000"
+      - "8081:8000"
     
-    # REQUIRED: Environment variables matching your app.py requirements
-    environment:
-      # These variable names MUST match os.environ["..."] calls in your code
-      DB_HOST: db  # The name of the database service
-      DB_USER: app_user_part1
-      DB_PASS: securepassword123
-      DB_NAME: web_app_db_part1
-      DB_PORT: 3306 
+    # CRITICAL: Mounts the local code ('.') from the Jenkins workspace into the container.
+    volumes:
+      - .:/usr/src/app
       
-    # Ensure the web app waits for the database to be ready
+    # Environment variables (must match your app.py variables)
+    environment:
+      DB_HOST: db
+      DB_USER: app_user_part2
+      DB_PASS: securepassword123
+      DB_NAME: web_app_db_part2
+      DB_PORT: 3306 
+      FLASK_ENV: production
+
     depends_on:
       - db
 
   # --- 2. Database Service (MySQL 8.0) ---
   db:
     image: mysql:8.0
-    container_name: mysql_db_container_part1
+    container_name: mysql_db_container_part2 # Changed container name
     
-    # REQUIRED for persistence: Attach a named volume to the data directory
+    # Volume for persistent data
     volumes:
-      - db_data:/var/lib/mysql
+      - db_data_part2:/var/lib/mysql
     
-    # REQUIRED: Environment variables to configure the MySQL server
+    # Environment variables (New credentials for Part II separation)
     environment:
-      # Standard MySQL image variables:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: web_app_db_part1
-      MYSQL_USER: app_user_part1
-      
-      # NOTE: For standard MySQL image, setting MYSQL_PASSWORD automatically sets
-      # the password for the user defined by MYSQL_USER.
+      MYSQL_ROOT_PASSWORD: rootpassword_part2
+      MYSQL_DATABASE: web_app_db_part2
+      MYSQL_USER: app_user_part2
       MYSQL_PASSWORD: securepassword123
     
     restart: always
 
 # --- 3. Volume Definition ---
 volumes:
-  db_data:
+  db_data_part2:
     driver: local
