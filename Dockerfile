@@ -22,7 +22,7 @@ RUN apt-get update && \
     wget \
     unzip \
     libappindicator3-1 libxss1 libasound2 \
-    libnss3 libgconf-2-4 libfontconfig1 \
+    libnss3 libfontconfig1 \
     # Install Google Chrome stable
     && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
     && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list \
