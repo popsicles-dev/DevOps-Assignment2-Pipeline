@@ -12,7 +12,7 @@ services:
     
     # REQUIRED: Map the container port (8000) to a NEW host port (8081)
     ports:
-      - "8081:8000"
+      - "80:8000"
     
     # CRITICAL: Mounts the local code ('.') from the Jenkins workspace into the container.
     volumes:
