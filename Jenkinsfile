@@ -1,19 +1,33 @@
 pipeline {
-    agent any  // Use 'any' so Docker commands work on the host
+    agent any
     
     environment {
         BASE_URL = 'http://16.171.224.162' 
         TEST_REPO_URL = 'https://github.com/popsicles-dev/DevOps-Selenium-Tests.git' 
-        TEST_FOLDER = 'java-tests'  // Match your actual folder name
+        TEST_FOLDER = 'java-tests'
     }
 
     stages {
-        stage('Checkout Source Codes') {
+        stage('Cleanup Old Containers') {
             steps {
-                echo "--- 1. Checkout Application Code ---"
-                checkout scm  // Checks out current repo (app repo with Jenkinsfile)
-                
-                echo "--- 2. Checkout Java Test Code ---"
+                echo "--- Cleaning up old containers ---"
+                sh '''
+                    docker compose down --remove-orphans 2>/dev/null || true
+                    docker rm -f mysql_db_container_part2 flask_web_container_part2 2>/dev/null || true
+                '''
+            }
+        }
+        
+        stage('Checkout Application Code') {
+            steps {
+                echo "--- Checkout Application Code ---"
+                checkout scm
+            }
+        }
+        
+        stage('Checkout Test Code') {
+            steps {
+                echo "--- Checkout Test Code ---"
                 dir('test-repo') {
                     git branch: 'main', url: "${TEST_REPO_URL}"
                 }
@@ -22,27 +36,31 @@ pipeline {
         
         stage('Build and Deploy App') {
             steps {
-                echo "--- Building and Deploying Flask App ---"
+                echo "--- Building Flask App ---"
                 sh 'docker compose up -d --build'
                 sh 'sleep 30'
             }
         }
         
-        stage('Test Execution (Maven in Docker)') {
+        stage('Build Test Image') {
             steps {
-                echo "--- Running Maven Tests in Docker Container ---"
-                script {
-                    // Run Maven tests inside a Docker container
-                    sh """
-                        docker run --rm \
-                        -v \$(pwd)/test-repo/${TEST_FOLDER}:/app \
-                        -v \$HOME/.m2:/root/.m2 \
-                        -w /app \
-                        -e BASE_URL=${BASE_URL} \
-                        maven:3.9.5-amazoncorretto-17 \
-                        mvn clean test -DbaseUrl=${BASE_URL}
-                    """
+                echo "--- Building Test Docker Image with Chrome ---"
+                dir('test-repo') {
+                    sh 'docker build -t selenium-tests:latest -f Dockerfile.tests-java .'
                 }
+            }
+        }
+        
+        stage('Run Tests') {
+            steps {
+                echo "--- Running Maven Tests in Container with Chrome ---"
+                sh """
+                    docker run --rm \
+                    --network host \
+                    -e BASE_URL=${BASE_URL} \
+                    -v \$(pwd)/test-repo/${TEST_FOLDER}/target:/app/target \
+                    selenium-tests:latest
+                """
             }
             post {
                 always {
@@ -51,17 +69,18 @@ pipeline {
             }
         }
         
-        stage('Cleanup Deployment') {
+        stage('Cleanup') {
             steps {
-                echo "--- Tearing down deployment ---"
+                echo "--- Final Cleanup ---"
                 sh 'docker compose down --rmi all'
+                sh 'docker rmi selenium-tests:latest 2>/dev/null || true'
             }
         }
     }
     
     post {
         always {
-            echo "Pipeline finished. Check test report for status."
+            echo "Pipeline finished. Check test report."
         }
     }
 }
