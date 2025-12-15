@@ -29,9 +29,75 @@ pipeline {
                 checkout scm
                 
                 script {
-                    env.GIT_COMMIT_MSG = sh(script: 'git log -1 --pretty=%B', returnStdout: true).trim()
-                    env.GIT_COMMITTER = sh(script: 'git log -1 --pretty=%an', returnStdout: true).trim()
-                    env.GIT_COMMITTER_EMAIL = sh(script: 'git log -1 --pretty=%ae', returnStdout: true).trim()
+                    // Get commit information
+                    env.GIT_COMMIT_MSG = sh(
+                        script: 'git log -1 --pretty=%B',
+                        returnStdout: true
+                    ).trim()
+                    env.GIT_COMMITTER = sh(
+                        script: 'git log -1 --pretty=%an',
+                        returnStdout: true
+                    ).trim()
+                    
+                    // DEBUG: Print all available environment variables related to Git/GitHub
+                    echo "=== DEBUG: Environment Variables ==="
+                    sh 'env | grep -i git || true'
+                    sh 'env | grep -i github || true'
+                    sh 'env | grep -i change || true'
+                    echo "==================================="
+                    
+                    // Get commit hash
+                    def commitHash = sh(
+                        script: 'git rev-parse HEAD',
+                        returnStdout: true
+                    ).trim()
+                    
+                    // Extract repo info using shell commands
+                    def gitUrl = sh(
+                        script: 'git config --get remote.origin.url',
+                        returnStdout: true
+                    ).trim()
+                    
+                    // Parse owner and repo using shell tools
+                    def repoPath = sh(
+                        script: """
+                            echo '${gitUrl}' | sed 's#.*github.com[:/]##' | sed 's#\\.git\$##'
+                        """,
+                        returnStdout: true
+                    ).trim()
+                    
+                    echo "Repository: ${repoPath}"
+                    echo "Commit Hash: ${commitHash}"
+                    
+                    // Try to get email from GitHub API using curl
+                    def githubEmail = ''
+                    try {
+                        githubEmail = sh(
+                            script: """
+                                curl -s "https://api.github.com/repos/${repoPath}/commits/${commitHash}" | grep -o '"email": "[^"]*"' | head -1 | sed 's/"email": "//;s/"//'
+                            """,
+                            returnStdout: true
+                        ).trim()
+                    } catch (Exception e) {
+                        echo "GitHub API call failed: ${e.message}"
+                        githubEmail = ''
+                    }
+                    
+                    echo "GitHub API returned: '${githubEmail}'"
+                    
+                    // Validate extracted email (should contain @)
+                    if (githubEmail && githubEmail.contains('@') && !githubEmail.contains('noreply')) {
+                        env.GIT_COMMITTER_EMAIL = githubEmail
+                        echo "✓ Email extracted from GitHub API: ${githubEmail}"
+                    } else {
+                        // Fallback to git log
+                        def gitLogEmail = sh(
+                            script: 'git log -1 --pretty=%ae',
+                            returnStdout: true
+                        ).trim()
+                        env.GIT_COMMITTER_EMAIL = gitLogEmail
+                        echo "⚠ Using git log email: ${gitLogEmail}"
+                    }
                     
                     echo "Commit: ${env.GIT_COMMIT_MSG}"
                     echo "Author: ${env.GIT_COMMITTER}"
@@ -100,15 +166,34 @@ pipeline {
             echo "Access your app at: ${BASE_URL}"
             
             script {
-                def committerEmail = env.GIT_COMMITTER_EMAIL ?: ''
+                // Re-extract email here to be absolutely sure
+                def finalEmail = sh(
+                    script: 'git log -1 --pretty=%ae',
+                    returnStdout: true
+                ).trim()
+                
+                // Use the freshly extracted email (not env variable which might be 'null' string)
+                def recipientEmail = finalEmail
+                
+                // Check if it's a noreply email, try to get author email instead
+                if (recipientEmail.contains('noreply')) {
+                    def authorEmail = sh(
+                        script: 'git log -1 --pretty=%aE',
+                        returnStdout: true
+                    ).trim()
+                    if (authorEmail && authorEmail.contains('@') && !authorEmail.contains('noreply')) {
+                        recipientEmail = authorEmail
+                    }
+                }
+                
                 def testStatus = currentBuild.result ?: 'SUCCESS'
                 
-                // Only send email if we have a valid committer email
-                if (committerEmail && committerEmail.contains('@')) {
+                // Only send email if we have a valid email
+                if (recipientEmail && recipientEmail.contains('@')) {
                     try {
-                        echo "Sending email to committer: ${committerEmail}"
+                        echo "Attempting to send email to: ${recipientEmail}"
                         
-                        mail to: committerEmail,
+                        mail to: recipientEmail,
                              subject: "Jenkins Build ${testStatus}: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                              body: """
 Build Status: ${testStatus}
@@ -128,13 +213,13 @@ Automated notification from Jenkins CI/CD Pipeline
 Note: Your application containers are still running at ${BASE_URL}
                              """
                         
-                        echo "✓ Email sent successfully to: ${committerEmail}"
+                        echo "✓ Email sent successfully to: ${recipientEmail}"
                     } catch (Exception e) {
-                        echo "✗ Failed to send email: ${e.getMessage()}"
+                        echo "✗ Failed to send email. Error: ${e.getMessage()}"
                     }
                 } else {
                     echo "⚠ No valid committer email found. Skipping email notification."
-                    echo "Extracted email was: '${committerEmail}'"
+                    echo "Extracted email was: '${recipientEmail}'"
                 }
             }
         }
