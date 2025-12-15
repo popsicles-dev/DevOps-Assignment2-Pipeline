@@ -4,9 +4,9 @@
 
 ![WeMech Logo](https://img.shields.io/badge/WeMech-Automotive%20Solution-blue?style=for-the-badge)
 
-A comprehensive web and desktop application designed to revolutionize the car ownership experience by providing maintenance tracking, parts sourcing, community support, and professional guidance all in one platform.
+A comprehensive web and desktop application designed to revolutionize the car ownership experience by providing maintenance tracking, parts sourcing, community support, and professional guidance all in one platform..
 
-## 🚗 Overview
+## 🚗 Overview 
 
 WeMech addresses the challenges faced by car owners in maintaining and repairing their vehicles by providing a centralized digital platform. The system eliminates the need for manual record-keeping and fragmented service searching, offering a streamlined solution for all automotive needs.
 
