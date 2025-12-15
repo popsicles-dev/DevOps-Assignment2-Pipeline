@@ -57,6 +57,7 @@ pipeline {
                 sh """
                     docker run --rm \
                     --network host \
+                    --shm-size=2g \
                     -e BASE_URL=${BASE_URL} \
                     -v \$(pwd)/test-repo/${TEST_FOLDER}/target:/app/target \
                     selenium-tests:latest
