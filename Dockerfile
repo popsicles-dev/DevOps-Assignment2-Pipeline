@@ -4,7 +4,6 @@ FROM python:3.11-slim
 # Set environment variables
 ENV PYTHONUNBUFFERED 1
 ENV APP_HOME /usr/src/app
-ENV CHROME_DRIVER_VERSION 125.0.6422.60 # Standard version for stability
 
 # Create the working directory
 WORKDIR $APP_HOME
@@ -21,15 +20,19 @@ RUN apt-get update && \
     # --- NEW: System dependencies required by Chrome ---
     wget \
     unzip \
+    gnupg \
+    ca-certificates \
     libappindicator3-1 libxss1 libasound2 \
     libnss3 libfontconfig1 \
-    # Install Google Chrome stable
-    && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
-    && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list \
+    # Install Google Chrome stable (modern method)
+    && wget -q -O /tmp/google-chrome.gpg https://dl-ssl.google.com/linux/linux_signing_key.pub \
+    && gpg --dearmor -o /usr/share/keyrings/google-chrome-keyring.gpg /tmp/google-chrome.gpg \
+    && echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome-keyring.gpg] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list \
     && apt-get update \
     && apt-get install -y google-chrome-stable \
-    # Install ChromeDriver
-    && wget -N "https://storage.googleapis.com/chrome-for-testing-public/$CHROME_DRIVER_VERSION/linux64/chromedriver-linux64.zip" -P /tmp/ \
+    # Install ChromeDriver (auto-detect Chrome version)
+    && CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+\.\d+') \
+    && wget -N "https://storage.googleapis.com/chrome-for-testing-public/${CHROME_VERSION}/linux64/chromedriver-linux64.zip" -P /tmp/ \
     && unzip /tmp/chromedriver-linux64.zip -d /usr/local/bin/ \
     && mv /usr/local/bin/chromedriver-linux64/chromedriver /usr/local/bin/chromedriver \
     && chmod +x /usr/local/bin/chromedriver \
