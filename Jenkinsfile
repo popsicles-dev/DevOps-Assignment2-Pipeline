@@ -75,4 +75,5 @@ pipeline {
         always {
             echo "Pipeline finished. Check test report for status."
         }
+    }
 }
