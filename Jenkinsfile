@@ -82,6 +82,29 @@ pipeline {
     post {
         always {
             echo "Pipeline finished. Check test report."
+            
+            emailext (
+                subject: "Jenkins Build ${currentBuild.result}: ${env.JOB_NAME} - Build #${env.BUILD_NUMBER}",
+                body: """
+                    <h2>Build ${currentBuild.result}</h2>
+                    <p><b>Job:</b> ${env.JOB_NAME}</p>
+                    <p><b>Build Number:</b> ${env.BUILD_NUMBER}</p>
+                    <p><b>Build Status:</b> ${currentBuild.result}</p>
+                    <p><b>Build Duration:</b> ${currentBuild.durationString}</p>
+                    <p><b>Build URL:</b> <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
+                    <p><b>Test Report:</b> <a href="${env.BUILD_URL}testReport/">${env.BUILD_URL}testReport/</a></p>
+                    <hr>
+                    <p><b>Console Output:</b> <a href="${env.BUILD_URL}console">${env.BUILD_URL}console</a></p>
+                """,
+                to: 'hifsashafique8@gmail.com',
+                mimeType: 'text/html'
+            )
+        }
+        success {
+            echo '✓ Tests passed! Email sent.'
+        }
+        failure {
+            echo '✗ Tests failed! Email sent.'
         }
     }
 }
