@@ -13,12 +13,12 @@ pipeline {
     }
 
     stages {
-        stage('Cleanup Old Containers') {
+        stage('Cleanup Old Test Containers') {
             steps {
-                echo "--- Cleaning up old containers and images ---"
+                echo "--- Cleaning up old test containers only ---"
                 sh """
-                    docker compose down --remove-orphans 2>/dev/null || true
-                    docker rm -f mysql_db_container_part2 flask_web_container_part2 2>/dev/null || true
+                    docker rm -f selenium-test-container 2>/dev/null || true
+                    docker rmi ${TEST_IMAGE_TAG} 2>/dev/null || true
                 """
             }
         }
@@ -51,7 +51,7 @@ pipeline {
         
         stage('Build and Deploy App') {
             steps {
-                echo "--- Building Flask App ---"
+                echo "--- Building and Deploying Flask App ---"
                 sh 'docker compose up -d --build'
                 sh 'sleep 30'
             }
@@ -86,10 +86,9 @@ pipeline {
             }
         }
         
-        stage('Cleanup') {
+        stage('Cleanup Test Resources') {
             steps {
-                echo "--- Final Cleanup ---"
-                sh 'docker compose down --rmi all'
+                echo "--- Cleaning up test image only (keeping app containers running) ---"
                 sh "docker rmi ${TEST_IMAGE_TAG} 2>/dev/null || true"
             }
         }
@@ -97,55 +96,54 @@ pipeline {
     
     post {
         always {
-            echo "Pipeline finished. Sending email notification."
+            echo "Pipeline finished. Application containers are still running."
+            echo "Access your app at: ${BASE_URL}"
             
             script {
                 def committerEmail = env.GIT_COMMITTER_EMAIL ?: ''
-                def recipientEmail = 'qasimalik@gmail.com'
-                
-                // Add committer email if valid and different from grading email
-                if (committerEmail && committerEmail.contains('@') && committerEmail != 'qasimalik@gmail.com') {
-                    recipientEmail = "${committerEmail},qasimalik@gmail.com"
-                }
-                
                 def testStatus = currentBuild.result ?: 'SUCCESS'
                 
-                try {
-                    echo "Sending email to: ${recipientEmail}"
-                    
-                    mail to: recipientEmail,
-                         subject: "Jenkins Build ${testStatus}: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                         body: """
+                // Only send email if we have a valid committer email
+                if (committerEmail && committerEmail.contains('@')) {
+                    try {
+                        echo "Sending email to committer: ${committerEmail}"
+                        
+                        mail to: committerEmail,
+                             subject: "Jenkins Build ${testStatus}: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                             body: """
 Build Status: ${testStatus}
 
 Job: ${env.JOB_NAME}
 Build Number: #${env.BUILD_NUMBER}
 Commit: ${env.GIT_COMMIT_MSG}
 Author: ${env.GIT_COMMITTER}
-Committer Email: ${committerEmail}
 
+Application URL: ${BASE_URL}
 View Build: ${env.BUILD_URL}
 Test Report: ${env.BUILD_URL}testReport/
 
 ---
 Automated notification from Jenkins CI/CD Pipeline
-                         """
-                    
-                    echo "✓ Email sent successfully to: ${recipientEmail}"
-                } catch (Exception e) {
-                    echo "✗ Failed to send email: ${e.getMessage()}"
-                    echo "Please verify:"
-                    echo "1. Jenkins SMTP configuration (Manage Jenkins → System → E-mail Notification)"
-                    echo "2. EC2 Security Group allows outbound port 587"
-                    echo "3. Gmail App Password is correct"
+
+Note: Your application containers are still running at ${BASE_URL}
+                             """
+                        
+                        echo "✓ Email sent successfully to: ${committerEmail}"
+                    } catch (Exception e) {
+                        echo "✗ Failed to send email: ${e.getMessage()}"
+                    }
+                } else {
+                    echo "⚠ No valid committer email found. Skipping email notification."
+                    echo "Extracted email was: '${committerEmail}'"
                 }
             }
         }
         success {
-            echo '✓ All tests passed! Pipeline completed successfully.'
+            echo '✓ All tests passed! Application is running.'
         }
         failure {
             echo '✗ Tests failed! Check logs above for details.'
+            echo 'Note: Application containers are still running for debugging.'
         }
     }
 }
